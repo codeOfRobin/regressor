@@ -11,7 +11,7 @@ import CoreGraphics
 import AppKit
 import PlotKit
 class ViewController: NSViewController {
-
+    
     
     override func viewDidLoad()
     {
@@ -29,22 +29,22 @@ class ViewController: NSViewController {
         pointSet.lineColor = nil
         plotView.addPointSet(pointSet)
         
-        
-        let pointSet2 = linearlyRegress(dataSet)
-        pointSet2.pointType = .Ring(radius: 3)
+        let linearResult = linearlyRegress(dataSet)
+        let pointSet2 = PointSet(points: linearResult.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
+        pointSet2.pointType = .None
         pointSet2.lineColor = NSColor.blueColor()
         plotView.addPointSet(pointSet2)
-
+        
     }
     
     // Regression shouldn't be a property of the set, should be a separate thing.
     
     
-    func linearlyRegress(dataSet: Set<DataPoint>)->PointSet
+    func linearlyRegress(dataSet: Set<DataPoint>)->LinearRegressionResult
     {
-//        let avgXs = dataSet.reduce(0.0) { (sum:Float, point:DataPoint) -> Float in
-//            return sum + point.x
-//        }/Float(dataSet.count)
+        //        let avgXs = dataSet.reduce(0.0) { (sum:Float, point:DataPoint) -> Float in
+        //            return sum + point.x
+        //        }/Float(dataSet.count)
         //same as above, we can write
         let sigmaX = dataSet.reduce(0.0){$0 + $1.x}
         let sigmaY = dataSet.reduce(0.0){$0 + $1.y}
@@ -57,19 +57,28 @@ class ViewController: NSViewController {
         print(slope)
         print(intercept)
         
-        let sampleCount = 67
-        let t = (60..<sampleCount).map({$0})
-        let y = t.map({slope * Float($0) + intercept})
+        let lowestX = dataSet.minElement({ (x, y) -> Bool in
+            return x.x < y.x
+        })
+        let highestX = dataSet.maxElement({ (x, y) -> Bool in
+            return x.x < y.x
+        })
         
-        return  PointSet(points: Array(zip(t,y)).map{ Point(x: Double($0.0), y: Double($0.1)) })
+        let result = LinearRegressionResult()
+        result.slope = slope
+        result.intercept = intercept
+        result.lowestX = lowestX?.x
+        result.highestX = highestX?.x
+        
+        return result
         
     }
     override var representedObject: AnyObject? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
-
-
+    
+    
 }
 

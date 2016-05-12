@@ -8,19 +8,22 @@
 
 import Foundation
 
-struct linearRegressionResult
+class LinearRegressionResult
 {
-    let slope: Float
-    let intercept: Float
-    let lowestX: Float?
-    let lowestY: Float?
+    var slope: Float = 0.0
+    var intercept: Float = 0.0
+    var lowestX: Float? = nil
+    var highestX: Float? = nil
     
     lazy var plotPoints: [DataPoint] =
-    {
-        guard let lowX = self.lowestX, let lowY = self.lowestY else
         {
-            return (0..<100).map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
-        }
-        return [DataPoint(x:60.0,y:3.1),DataPoint(x:61.0,y:3.6),DataPoint(x:62.0,y:3.8),DataPoint(x:63.0,y:4.0),DataPoint(x:65.0,y:4.1)]
+            guard let lowX = self.lowestX, let highX = self.highestX else
+            {
+                return (0..<100).map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
+            }
+            let xvals = (0..<100).map{return lowX + (highX - lowX)/100*Float($0)} //had to do this because the expression was too long to compile. Fix in swift 3 , pliss?
+            
+            return xvals.map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
     }()
+    
 }
