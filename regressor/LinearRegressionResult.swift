@@ -19,9 +19,9 @@ struct LinearRegressionResult
 	{
             guard let lowX = self.lowestX, let highX = self.highestX else
             {
-                return (0..<100).map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
+                return (0..<101).map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
             }
-            let xvals = (0..<100).map{return lowX + (highX - lowX)/100*Float($0)} //had to do this because the expression was too long to compile. Fix in swift 3 , pliss?
+            let xvals = (0..<101).map{return lowX + (highX - lowX)/100*Float($0)} //had to do this because the expression was too long to compile. Fix in swift 3 , pliss?
             
             return xvals.map{return DataPoint(x:Float($0),y:Float($0)*self.slope + self.intercept)}
     }

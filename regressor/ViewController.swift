@@ -12,11 +12,12 @@ import AppKit
 import PlotKit
 class ViewController: NSViewController {
     
+    @IBOutlet weak var plotView: PlotView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        let plotView = PlotView(frame: view.frame)
+        plotView.frame = view.frame
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
@@ -35,6 +36,13 @@ class ViewController: NSViewController {
         pointSet2.lineColor = NSColor.blueColor()
         plotView.addPointSet(pointSet2)
         
+        var xaxis = Axis(orientation: .Horizontal)
+        xaxis.lineWidth = 2
+        plotView.addAxis(xaxis)
+        
+        var yaxis = Axis(orientation: .Vertical)
+        yaxis.lineWidth = 2
+        plotView.addAxis(yaxis)
     }
     
     // Regression shouldn't be a property of the set, should be a separate thing.
@@ -73,7 +81,6 @@ class ViewController: NSViewController {
             // Update the view, if already loaded.
         }
     }
-    
     
 }
 
