@@ -16,7 +16,7 @@
 		422AA4D31CE27FC10029A442 /* PlotKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 422AA4D01CE27FB30029A442 /* PlotKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		422AA4D61CE2887A0029A442 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422AA4D51CE2887A0029A442 /* CoreGraphics.framework */; };
 		422AA4F01CE366490029A442 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422AA4EF1CE366490029A442 /* DataPoint.swift */; };
-		42596B071CE3E400001FD775 /* linearRegressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42596B061CE3E400001FD775 /* linearRegressionResult.swift */; };
+		42596B071CE3E400001FD775 /* LinearRegressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42596B061CE3E400001FD775 /* LinearRegressionResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,7 +44,7 @@
 		422AA4D01CE27FB30029A442 /* PlotKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlotKit.framework; sourceTree = "<group>"; };
 		422AA4D51CE2887A0029A442 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		422AA4EF1CE366490029A442 /* DataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
-		42596B061CE3E400001FD775 /* linearRegressionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = linearRegressionResult.swift; sourceTree = "<group>"; usesTabs = 1; };
+		42596B061CE3E400001FD775 /* LinearRegressionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegressionResult.swift; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 			children = (
 				422AA4BF1CE278B10029A442 /* AppDelegate.swift */,
 				422AA4C11CE278B10029A442 /* ViewController.swift */,
-				42596B061CE3E400001FD775 /* linearRegressionResult.swift */,
+				42596B061CE3E400001FD775 /* LinearRegressionResult.swift */,
 				422AA4EF1CE366490029A442 /* DataPoint.swift */,
 				422AA4C31CE278B10029A442 /* Document.swift */,
 				422AA4C51CE278B10029A442 /* Assets.xcassets */,
@@ -167,7 +167,7 @@
 				422AA4C21CE278B10029A442 /* ViewController.swift in Sources */,
 				422AA4C01CE278B10029A442 /* AppDelegate.swift in Sources */,
 				422AA4F01CE366490029A442 /* DataPoint.swift in Sources */,
-				42596B071CE3E400001FD775 /* linearRegressionResult.swift in Sources */,
+				42596B071CE3E400001FD775 /* LinearRegressionResult.swift in Sources */,
 				422AA4C41CE278B10029A442 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
