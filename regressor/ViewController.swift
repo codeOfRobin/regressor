@@ -64,12 +64,7 @@ class ViewController: NSViewController {
             return x.x < y.x
         })
         
-        let result = LinearRegressionResult()
-        result.slope = slope
-        result.intercept = intercept
-        result.lowestX = lowestX?.x
-        result.highestX = highestX?.x
-        
+        let result = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: lowestX?.x, highestX: highestX?.x)
         return result
         
     }
