@@ -14,6 +14,7 @@
 		422AA4C91CE278B10029A442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422AA4C71CE278B10029A442 /* Main.storyboard */; };
 		422AA4D61CE2887A0029A442 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422AA4D51CE2887A0029A442 /* CoreGraphics.framework */; };
 		422AA4F01CE366490029A442 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422AA4EF1CE366490029A442 /* DataPoint.swift */; };
+		424483FD1CE7D60900C1E9FA /* PLA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424483FC1CE7D60900C1E9FA /* PLA.swift */; };
 		4248E5E31CE65A16003B4703 /* PlotKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5DF1CE6591B003B4703 /* PlotKit.framework */; };
 		4248E5E41CE65A16003B4703 /* PlotKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5DF1CE6591B003B4703 /* PlotKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4248E5E51CE65A16003B4703 /* Upsurge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5E01CE6591B003B4703 /* Upsurge.framework */; };
@@ -46,6 +47,7 @@
 		422AA4CA1CE278B10029A442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		422AA4D51CE2887A0029A442 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		422AA4EF1CE366490029A442 /* DataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
+		424483FC1CE7D60900C1E9FA /* PLA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLA.swift; sourceTree = "<group>"; };
 		4248E5DF1CE6591B003B4703 /* PlotKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlotKit.framework; path = Carthage/Build/Mac/PlotKit.framework; sourceTree = SOURCE_ROOT; };
 		4248E5E01CE6591B003B4703 /* Upsurge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Upsurge.framework; path = Carthage/Build/Mac/Upsurge.framework; sourceTree = SOURCE_ROOT; };
 		42596B061CE3E400001FD775 /* LinearRegressionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegressionResult.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -88,6 +90,7 @@
 				422AA4BF1CE278B10029A442 /* AppDelegate.swift */,
 				422AA4C11CE278B10029A442 /* ViewController.swift */,
 				42596B061CE3E400001FD775 /* LinearRegressionResult.swift */,
+				424483FC1CE7D60900C1E9FA /* PLA.swift */,
 				422AA4EF1CE366490029A442 /* DataPoint.swift */,
 				422AA4C31CE278B10029A442 /* Document.swift */,
 				422AA4C51CE278B10029A442 /* Assets.xcassets */,
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				422AA4C21CE278B10029A442 /* ViewController.swift in Sources */,
+				424483FD1CE7D60900C1E9FA /* PLA.swift in Sources */,
 				422AA4C01CE278B10029A442 /* AppDelegate.swift in Sources */,
 				422AA4F01CE366490029A442 /* DataPoint.swift in Sources */,
 				42596B071CE3E400001FD775 /* LinearRegressionResult.swift in Sources */,

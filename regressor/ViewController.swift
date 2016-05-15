@@ -21,6 +21,13 @@ class ViewController: NSViewController {
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
+        linearRegressionDemo()
+        
+        print(Float.random(-1.0, upper: 1.0))
+    }
+    
+    func linearRegressionDemo()
+    {
         let dataSet = Set([DataPoint(x:60.0,y:3.1),DataPoint(x:61.0,y:3.6),DataPoint(x:62.0,y:3.8),DataPoint(x:63.0,y:4.0),DataPoint(x:65.0,y:4.1)])
         
         let pointSet = PointSet(points: dataSet.map{Point(x: Double($0.x),y: Double($0.y))})
@@ -34,6 +41,7 @@ class ViewController: NSViewController {
         let pointSet2 = PointSet(points: linearResult.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
         pointSet2.pointType = .None
         pointSet2.lineColor = NSColor.blueColor()
+        
         plotView.addPointSet(pointSet2)
         
         var xaxis = Axis(orientation: .Horizontal)
@@ -45,6 +53,7 @@ class ViewController: NSViewController {
         plotView.addAxis(yaxis)
     }
     
+
     // Regression shouldn't be a property of the set, should be a separate thing.
     
     
