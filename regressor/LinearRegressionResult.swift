@@ -27,3 +27,28 @@ struct LinearRegressionResult
     }
     
 }
+
+func linearlyRegress(dataSet: Set<DataPoint>)->LinearRegressionResult
+{
+	let sigmaX = dataSet.reduce(0.0){$0 + $1.x}
+	let sigmaY = dataSet.reduce(0.0){$0 + $1.y}
+	let sigmaXY = dataSet.reduce(0.0){$0 + $1.y*$1.x}
+	let sigmaXSquare = dataSet.reduce(0.0){$0 + powf($1.x, 2.0)}
+	let N = Float(dataSet.count)
+	let slope = (N*sigmaXY - sigmaX*sigmaY)/(N*sigmaXSquare - pow(sigmaX,2.0))
+	let intercept = (sigmaY - slope*sigmaX)/N
+	
+	print(slope)
+	print(intercept)
+	
+	let lowestX = dataSet.minElement({ (x, y) -> Bool in
+		return x.x < y.x
+	})
+	let highestX = dataSet.maxElement({ (x, y) -> Bool in
+		return x.x < y.x
+	})
+	
+	let result = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: lowestX?.x, highestX: highestX?.x)
+	return result
+	
+}

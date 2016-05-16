@@ -15,14 +15,3 @@ public extension Float
     }
 }
 
-func createF()
-{
-    let x1 = Float.random(-1.0, upper: 1.0)
-    let x2 = Float.random(-1.0, upper: 1.0)
-    let y1 = Float.random(-1.0, upper: 1.0)
-    let y2 = Float.random(-1.0, upper: 1.0)
-    
-    let slope = (y2-y1)/(x2-x1)
-    let intercept = y1 - x1*slope
-    
-}

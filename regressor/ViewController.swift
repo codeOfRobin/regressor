@@ -21,9 +21,7 @@ class ViewController: NSViewController {
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
-        linearRegressionDemo()
-        
-        print(Float.random(-1.0, upper: 1.0))
+        onePerceptronRun(10)
     }
     
     func linearRegressionDemo()
@@ -54,38 +52,49 @@ class ViewController: NSViewController {
     }
     
 
+    
+    func onePerceptronRun(numberOfTrainingPoints : Int)
+    {
+        let x1 = Float.random(-1.0, upper: 1.0)
+        let x2 = Float.random(-1.0, upper: 1.0)
+        let y1 = Float.random(-1.0, upper: 1.0)
+        let y2 = Float.random(-1.0, upper: 1.0)
+        
+        let slope = (y2-y1)/(x2-x1)
+        let intercept = y1 - x1*slope
+        
+        
+
+        
+        let trainingPoints = (0..<numberOfTrainingPoints).map{_ in return DataPoint(x:Float.random(-1.0, upper: 1.0),y:Float.random(-1.0, upper: 1.0))}
+        print(trainingPoints)
+        
+        let pointSet = PointSet(points: trainingPoints.map{Point(x: Double($0.x),y: Double($0.y))})
+        pointSet.pointType = .Disk(radius: 4)
+        pointSet.pointColor = NSColor.redColor()
+        pointSet.lineColor = nil
+        plotView.addPointSet(pointSet)
+        
+        let line = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: -1.0, highestX: 1.0)
+        
+        let pointSet2 = PointSet(points: line.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
+        pointSet2.pointType = .None
+        pointSet2.lineColor = NSColor.blueColor()
+        plotView.addPointSet(pointSet2)
+        
+        var xaxis = Axis(orientation: .Horizontal)
+        xaxis.lineWidth = 2
+        plotView.addAxis(xaxis)
+        
+        var yaxis = Axis(orientation: .Vertical)
+        yaxis.lineWidth = 2
+        plotView.addAxis(yaxis)
+        
+    }
     // Regression shouldn't be a property of the set, should be a separate thing.
     
     
-    func linearlyRegress(dataSet: Set<DataPoint>)->LinearRegressionResult
-    {
-        //        let avgXs = dataSet.reduce(0.0) { (sum:Float, point:DataPoint) -> Float in
-        //            return sum + point.x
-        //        }/Float(dataSet.count)
-        //same as above, we can write
-        let sigmaX = dataSet.reduce(0.0){$0 + $1.x}
-        let sigmaY = dataSet.reduce(0.0){$0 + $1.y}
-        let sigmaXY = dataSet.reduce(0.0){$0 + $1.y*$1.x}
-        let sigmaXSquare = dataSet.reduce(0.0){$0 + powf($1.x, 2.0)}
-        let N = Float(dataSet.count)
-        let slope = (N*sigmaXY - sigmaX*sigmaY)/(N*sigmaXSquare - pow(sigmaX,2.0))
-        let intercept = (sigmaY - slope*sigmaX)/N
-        
-        print(slope)
-        print(intercept)
-        
-        let lowestX = dataSet.minElement({ (x, y) -> Bool in
-            return x.x < y.x
-        })
-        let highestX = dataSet.maxElement({ (x, y) -> Bool in
-            return x.x < y.x
-        })
-        
-        let result = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: lowestX?.x, highestX: highestX?.x)
-        return result
-        
-    }
-    override var representedObject: AnyObject? {
+      override var representedObject: AnyObject? {
         didSet {
             // Update the view, if already loaded.
         }
