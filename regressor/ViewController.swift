@@ -51,36 +51,67 @@ class ViewController: NSViewController {
         plotView.addAxis(yaxis)
     }
     
-
+    
+    func getWeightVector(x1:Float,x2:Float,y1:Float,y2:Float) -> [Float]
+    {
+        return [x2-x1, y1-y2, x1*(y2-y1) - y1*(x2-x1)]
+    }
+    
+    func getSlopeAndIntercept(weightVector:[Float])->(slope:Float, intercept:Float)
+    {
+        return (slope: weightVector[1]/weightVector[0], intercept: weightVector[2])
+    }
+    
+    //Squarespace: Build it beautiful. Use code ATP for 10% off your first order.
+    func getRandomLineInSquareSpace(lower:Float,upper:Float) -> [Float]
+    {
+        let x1 = Float.random(lower, upper: upper)
+        let x2 = Float.random(lower, upper: upper)
+        let y1 = Float.random(lower, upper: upper)
+        let y2 = Float.random(lower, upper: upper)
+        return getWeightVector(x1, x2: x2, y1: y1, y2: y2)
+    }
     
     func onePerceptronRun(numberOfTrainingPoints : Int)
     {
-        let x1 = Float.random(-1.0, upper: 1.0)
-        let x2 = Float.random(-1.0, upper: 1.0)
-        let y1 = Float.random(-1.0, upper: 1.0)
-        let y2 = Float.random(-1.0, upper: 1.0)
-        
-        let slope = (y2-y1)/(x2-x1)
-        let intercept = y1 - x1*slope
-        
-        
-
-        
-        let trainingPoints = (0..<numberOfTrainingPoints).map{_ in return DataPoint(x:Float.random(-1.0, upper: 1.0),y:Float.random(-1.0, upper: 1.0))}
-        print(trainingPoints)
-        
-        let pointSet = PointSet(points: trainingPoints.map{Point(x: Double($0.x),y: Double($0.y))})
-        pointSet.pointType = .Disk(radius: 4)
-        pointSet.pointColor = NSColor.redColor()
-        pointSet.lineColor = nil
-        plotView.addPointSet(pointSet)
-        
+        let w = getRandomLineInSquareSpace(-1.0, upper: 1.0)
+        let (slope,intercept) = getSlopeAndIntercept(w)
         let line = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: -1.0, highestX: 1.0)
+        let trainingPoints = (0..<numberOfTrainingPoints).map{_ in return DataPoint(x:Float.random(-1.0, upper: 1.0),y:Float.random(-1.0, upper: 1.0))}
         
-        let pointSet2 = PointSet(points: line.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
-        pointSet2.pointType = .None
-        pointSet2.lineColor = NSColor.blueColor()
-        plotView.addPointSet(pointSet2)
+        
+        var pluses : [DataPoint] = []
+        var minuses : [DataPoint] = []
+        
+        // TODO: turn this into a filter
+        for point in trainingPoints
+        {
+            if (point.y - slope*point.x - intercept)>0
+            {
+                pluses.append(point)
+            }
+            else
+            {
+                minuses.append(point)
+            }
+        }
+        
+        let plusSet = PointSet(points: pluses.map{Point(x: Double($0.x),y: Double($0.y))})
+        plusSet.pointType = .Disk(radius: 4)
+        plusSet.pointColor = NSColor.greenColor()
+        plusSet.lineColor = nil
+        plotView.addPointSet(plusSet)
+        
+        let minusSet = PointSet(points: minuses.map{Point(x: Double($0.x),y: Double($0.y))})
+        minusSet.pointType = .Disk(radius: 4)
+        minusSet.pointColor = NSColor.redColor()
+        minusSet.lineColor = nil
+        plotView.addPointSet(minusSet)
+        
+        let pointSet = PointSet(points: line.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
+        pointSet.pointType = .None
+        pointSet.lineColor = NSColor.blueColor()
+        plotView.addPointSet(pointSet)
         
         var xaxis = Axis(orientation: .Horizontal)
         xaxis.lineWidth = 2
@@ -90,8 +121,41 @@ class ViewController: NSViewController {
         yaxis.lineWidth = 2
         plotView.addAxis(yaxis)
         
+        var w2 = getRandomLineInSquareSpace(-1.0, upper: 1.0)
+        
+        while true
+        {
+            print("still running")
+            var check = false
+            for point in trainingPoints
+            {
+                let firstPointResult = (point.y*w[0] + point.x*w[1] + 1*w[2]).sign()
+                let secondPointResult = (point.y*w2[0] + point.x*w2[1] + 1*w2[2]).sign()
+                if secondPointResult != firstPointResult
+                {
+                    check = true
+                    w2[0] += w[0] * (firstPointResult == .Positive ? 1 : -1)
+                    w2[1] += w[1] * (firstPointResult == .Positive ? 1 : -1)
+                    w2[2] += w[2] * (firstPointResult == .Positive ? 1 : -1)
+                    break
+                }
+            }
+            if check == false
+            {
+                break
+            }
+        }
+        
+        let (slope2,intercept2) = getSlopeAndIntercept(w2)
+        let line2 = LinearRegressionResult(slope: slope2, intercept: intercept2, lowestX: -1.0, highestX: 1.0)
+        let pointSet2 = PointSet(points: line2.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
+        pointSet2.pointType = .None
+        pointSet2.lineColor = NSColor.orangeColor()
+        plotView.addPointSet(pointSet2)
+        
     }
-    // Regression shouldn't be a property of the set, should be a separate thing.
+    
+    // MARK: Regression shouldn't be a property of the set, should be a separate thing.
     
     
       override var representedObject: AnyObject? {
@@ -101,4 +165,7 @@ class ViewController: NSViewController {
     }
     
 }
+
+
+
 
