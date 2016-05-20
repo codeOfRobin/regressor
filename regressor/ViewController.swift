@@ -21,7 +21,7 @@ class ViewController: NSViewController {
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
-        onePerceptronRun(10)
+        onePerceptronRun(10000)
     }
     
     func linearRegressionDemo()
@@ -59,7 +59,7 @@ class ViewController: NSViewController {
     
     func getSlopeAndIntercept(weightVector:[Float])->(slope:Float, intercept:Float)
     {
-        return (slope: weightVector[1]/weightVector[0], intercept: weightVector[2])
+        return (slope: -weightVector[1]/weightVector[0], intercept: -weightVector[2]/weightVector[0])
     }
     
     //Squarespace: Build it beautiful. Use code ATP for 10% off your first order.
@@ -74,6 +74,8 @@ class ViewController: NSViewController {
     
     func onePerceptronRun(numberOfTrainingPoints : Int)
     {
+        
+        let startTime = CFAbsoluteTimeGetCurrent()
         let w = getRandomLineInSquareSpace(-1.0, upper: 1.0)
         let (slope,intercept) = getSlopeAndIntercept(w)
         let line = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: -1.0, highestX: 1.0)
@@ -122,10 +124,10 @@ class ViewController: NSViewController {
         plotView.addAxis(yaxis)
         
         var w2 = getRandomLineInSquareSpace(-1.0, upper: 1.0)
-        
+        var counter = 0
         while true
         {
-            print("still running")
+            counter+=1
             var check = false
             for point in trainingPoints
             {
@@ -134,9 +136,9 @@ class ViewController: NSViewController {
                 if secondPointResult != firstPointResult
                 {
                     check = true
-                    w2[0] += w[0] * (firstPointResult == .Positive ? 1 : -1)
-                    w2[1] += w[1] * (firstPointResult == .Positive ? 1 : -1)
-                    w2[2] += w[2] * (firstPointResult == .Positive ? 1 : -1)
+                    w2[0] += point.y * (firstPointResult == .Positive ? 1 : -1)
+                    w2[1] += point.x * (firstPointResult == .Positive ? 1 : -1)
+                    w2[2] += 1 * (firstPointResult == .Positive ? 1 : -1)
                     break
                 }
             }
@@ -146,13 +148,20 @@ class ViewController: NSViewController {
             }
         }
         
+        print(counter)
+        
+//        let origResults = trainingPoints.map{return ($0.y*w[0] + $0.x*w[1] + 1*w[2]).sign()}
+//        let newResults = trainingPoints.map{return ($0.y*w2[0] + $0.x*w2[1] + 1*w2[2]).sign()}
+//        print(origResults)
+//        print(newResults)
         let (slope2,intercept2) = getSlopeAndIntercept(w2)
         let line2 = LinearRegressionResult(slope: slope2, intercept: intercept2, lowestX: -1.0, highestX: 1.0)
         let pointSet2 = PointSet(points: line2.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
         pointSet2.pointType = .None
         pointSet2.lineColor = NSColor.orangeColor()
         plotView.addPointSet(pointSet2)
-        
+        let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
+        print("Time elapsed for PLA: \(timeElapsed) s")
     }
     
     // MARK: Regression shouldn't be a property of the set, should be a separate thing.
