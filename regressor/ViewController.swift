@@ -21,7 +21,7 @@ class ViewController: NSViewController {
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
-        onePerceptronRun(10000)
+        onePerceptronRun(30)
     }
     
     func linearRegressionDemo()
@@ -81,7 +81,13 @@ class ViewController: NSViewController {
         let line = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: -1.0, highestX: 1.0)
         let trainingPoints = (0..<numberOfTrainingPoints).map{_ in return DataPoint(x:Float.random(-1.0, upper: 1.0),y:Float.random(-1.0, upper: 1.0))}
         
+        for point in trainingPoints
+        {
+            print("[\(point.x),\(point.y)],")
+        }
         
+        print(line.plotPoints.first)
+        print(line.plotPoints.last)
         var pluses : [DataPoint] = []
         var minuses : [DataPoint] = []
         
@@ -124,6 +130,7 @@ class ViewController: NSViewController {
         plotView.addAxis(yaxis)
         
         var w2 = getRandomLineInSquareSpace(-1.0, upper: 1.0)
+//        var w2 = [0.0 , 0.0 , 0.0]
         var counter = 0
         while true
         {
@@ -156,6 +163,8 @@ class ViewController: NSViewController {
 //        print(newResults)
         let (slope2,intercept2) = getSlopeAndIntercept(w2)
         let line2 = LinearRegressionResult(slope: slope2, intercept: intercept2, lowestX: -1.0, highestX: 1.0)
+        print(line2.plotPoints.first)
+        print(line2.plotPoints.last)
         let pointSet2 = PointSet(points: line2.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
         pointSet2.pointType = .None
         pointSet2.lineColor = NSColor.orangeColor()
