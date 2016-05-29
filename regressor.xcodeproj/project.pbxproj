@@ -20,6 +20,8 @@
 		4248E5E51CE65A16003B4703 /* Upsurge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5E01CE6591B003B4703 /* Upsurge.framework */; };
 		4248E5E61CE65A16003B4703 /* Upsurge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5E01CE6591B003B4703 /* Upsurge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		42596B071CE3E400001FD775 /* LinearRegressionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42596B061CE3E400001FD775 /* LinearRegressionResult.swift */; };
+		4286CEE11CFB8F7600E64A8E /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4286CEDF1CFB8F7600E64A8E /* WebController.swift */; };
+		4286CEE41CFB900C00E64A8E /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4286CEE31CFB900C00E64A8E /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +53,8 @@
 		4248E5DF1CE6591B003B4703 /* PlotKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlotKit.framework; path = Carthage/Build/Mac/PlotKit.framework; sourceTree = SOURCE_ROOT; };
 		4248E5E01CE6591B003B4703 /* Upsurge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Upsurge.framework; path = Carthage/Build/Mac/Upsurge.framework; sourceTree = SOURCE_ROOT; };
 		42596B061CE3E400001FD775 /* LinearRegressionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegressionResult.swift; sourceTree = "<group>"; usesTabs = 1; };
+		4286CEDF1CFB8F7600E64A8E /* WebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		4286CEE31CFB900C00E64A8E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4286CEE41CFB900C00E64A8E /* WebKit.framework in Frameworks */,
 				4248E5E31CE65A16003B4703 /* PlotKit.framework in Frameworks */,
 				4248E5E51CE65A16003B4703 /* Upsurge.framework in Frameworks */,
 				422AA4D61CE2887A0029A442 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +75,7 @@
 		422AA4B31CE278B10029A442 = {
 			isa = PBXGroup;
 			children = (
+				4286CEE31CFB900C00E64A8E /* WebKit.framework */,
 				422AA4D51CE2887A0029A442 /* CoreGraphics.framework */,
 				422AA4BE1CE278B10029A442 /* regressor */,
 				422AA4BD1CE278B10029A442 /* Products */,
@@ -87,6 +93,7 @@
 		422AA4BE1CE278B10029A442 /* regressor */ = {
 			isa = PBXGroup;
 			children = (
+				4286CEDF1CFB8F7600E64A8E /* WebController.swift */,
 				422AA4BF1CE278B10029A442 /* AppDelegate.swift */,
 				422AA4C11CE278B10029A442 /* ViewController.swift */,
 				42596B061CE3E400001FD775 /* LinearRegressionResult.swift */,
@@ -176,6 +183,7 @@
 				422AA4C21CE278B10029A442 /* ViewController.swift in Sources */,
 				424483FD1CE7D60900C1E9FA /* PLA.swift in Sources */,
 				422AA4C01CE278B10029A442 /* AppDelegate.swift in Sources */,
+				4286CEE11CFB8F7600E64A8E /* WebController.swift in Sources */,
 				422AA4F01CE366490029A442 /* DataPoint.swift in Sources */,
 				42596B071CE3E400001FD775 /* LinearRegressionResult.swift in Sources */,
 				422AA4C41CE278B10029A442 /* Document.swift in Sources */,
