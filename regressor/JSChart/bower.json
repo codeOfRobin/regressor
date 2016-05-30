@@ -1,0 +1,23 @@
+{
+  "name": "JSChart",
+  "authors": [
+    "Robin Malhotra <malhotra.robin@icloud.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-1.9.1.min": "https://code.jquery.com/jquery-1.9.1.min.js",
+    "jquery": "1.9.1",
+    "highcharts": "~4.2.5"
+  }
+}

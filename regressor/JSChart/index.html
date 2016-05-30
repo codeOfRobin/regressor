@@ -1,0 +1,87 @@
+<html>
+<script src="./bower_components/jquery/jquery.min.js"></script>
+<script src="./bower_components/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="./bower_components/highcharts/themes/dark-unica.js"></script>
+<body>
+    <div id="container" style="width:100%; height:400px;"></div>
+
+
+    <script>
+    // Create the chart
+    Highcharts.Chart('container', { /*Highcharts options*/ });
+
+    </script>
+
+    <script>
+
+    var dataSet = [[-0.879807,0.0574596],
+    [-0.762969,0.906251],
+    [0.411505,0.103598],
+    [0.373019,0.57817],
+    [0.854822,0.81978],
+    [-0.0319636,0.511918],
+    [0.573682,0.151152],
+    [0.0929792,-0.607904],
+    [0.51887,-0.885228],
+    [-0.86552,-0.0205048],
+    [-0.809675,-0.139622],
+    [-0.290327,-0.246323],
+    [-0.323699,-0.336416],
+    [0.458378,-0.0930767],
+    [-0.99553,-0.639861],
+    [0.449108,-0.485145],
+    [-0.645885,0.419474],
+    [-0.0275999,-0.0306395],
+    [0.763686,-0.578902],
+    [-0.761795,-0.530272],
+    [-0.566665,0.0783761],
+    [-0.296371,-0.395729],
+    [-0.806512,-0.921623],
+    [-0.902934,-0.807866],
+    [0.180579,-0.400527],
+    [-0.900001,0.174628],
+    [0.992588,0.194625],
+    [-0.162586,0.252783],
+    [0.365171,0.433726],
+    [0.629412,-0.186859]]
+    $(function () {
+        $('#container').highcharts({
+            xAxis: {
+                min: -1,
+                max: 1
+            },
+            yAxis: {
+                min: -1,
+                max: 1
+            },
+            title: {
+                text: 'Scatter plot with regression line'
+            },
+            series: [{
+                type: 'line',
+                name: 'Regression Line',
+                data: [[-1, 0.89], [1, -1.13]],
+                marker: {
+                    enabled: false
+                },
+                states: {
+                    hover: {
+                        lineWidth: 0
+                    }
+                },
+                enableMouseTracking: false
+            }, {
+                type: 'scatter',
+                name: 'Observations',
+                data: dataSet,
+                marker: {
+                    radius: 4
+                }
+            }]
+        });
+    });
+
+    </script>
+
+</body>
+</html>

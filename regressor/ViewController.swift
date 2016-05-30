@@ -10,13 +10,19 @@ import Cocoa
 import CoreGraphics
 import AppKit
 import PlotKit
+import WebKit
 class ViewController: NSViewController {
     
     @IBOutlet weak var plotView: PlotView!
+    @IBOutlet weak var webView: WebView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let path = NSBundle.mainBundle().bundlePath
+        print(path)
+        let baseURL = NSURL.fileURLWithPath("\(path)/Contents/Resources/JSChart/index.html")
+        webView.mainFrame.loadRequest(NSURLRequest(URL: baseURL))
         plotView.frame = view.frame
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
