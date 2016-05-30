@@ -14,6 +14,8 @@
 		422AA4C91CE278B10029A442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 422AA4C71CE278B10029A442 /* Main.storyboard */; };
 		422AA4D61CE2887A0029A442 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422AA4D51CE2887A0029A442 /* CoreGraphics.framework */; };
 		422AA4F01CE366490029A442 /* DataPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422AA4EF1CE366490029A442 /* DataPoint.swift */; };
+		424355061CFCC78A00FA0E31 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 424355041CFCC77600FA0E31 /* SwiftyJSON.framework */; };
+		424355071CFCC78A00FA0E31 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 424355041CFCC77600FA0E31 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		424483FD1CE7D60900C1E9FA /* PLA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424483FC1CE7D60900C1E9FA /* PLA.swift */; };
 		4248E5E31CE65A16003B4703 /* PlotKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5DF1CE6591B003B4703 /* PlotKit.framework */; };
 		4248E5E41CE65A16003B4703 /* PlotKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4248E5DF1CE6591B003B4703 /* PlotKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,6 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				424355071CFCC78A00FA0E31 /* SwiftyJSON.framework in Embed Frameworks */,
 				4248E5E41CE65A16003B4703 /* PlotKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -46,6 +49,7 @@
 		422AA4CA1CE278B10029A442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		422AA4D51CE2887A0029A442 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		422AA4EF1CE366490029A442 /* DataPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataPoint.swift; sourceTree = "<group>"; };
+		424355041CFCC77600FA0E31 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		424483FC1CE7D60900C1E9FA /* PLA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLA.swift; sourceTree = "<group>"; };
 		4248E5DF1CE6591B003B4703 /* PlotKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PlotKit.framework; path = Carthage/Build/Mac/PlotKit.framework; sourceTree = SOURCE_ROOT; };
 		42596B061CE3E400001FD775 /* LinearRegressionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearRegressionResult.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -61,6 +65,7 @@
 				4286CEE41CFB900C00E64A8E /* WebKit.framework in Frameworks */,
 				4248E5E31CE65A16003B4703 /* PlotKit.framework in Frameworks */,
 				422AA4D61CE2887A0029A442 /* CoreGraphics.framework in Frameworks */,
+				424355061CFCC78A00FA0E31 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 		422AA4B31CE278B10029A442 = {
 			isa = PBXGroup;
 			children = (
+				424355041CFCC77600FA0E31 /* SwiftyJSON.framework */,
 				4286CEE31CFB900C00E64A8E /* WebKit.framework */,
 				422AA4D51CE2887A0029A442 /* CoreGraphics.framework */,
 				422AA4BE1CE278B10029A442 /* regressor */,
@@ -289,6 +295,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/regressor",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = regressor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -306,6 +313,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/regressor",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = regressor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

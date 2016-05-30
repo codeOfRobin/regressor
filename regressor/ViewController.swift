@@ -11,6 +11,7 @@ import CoreGraphics
 import AppKit
 import PlotKit
 import WebKit
+import SwiftyJSON
 class ViewController: NSViewController {
     
     @IBOutlet weak var plotView: PlotView!
@@ -27,7 +28,7 @@ class ViewController: NSViewController {
         plotView.wantsLayer = true
         plotView.layer?.backgroundColor = NSColor.redColor().CGColor
         view.addSubview(plotView)
-        onePerceptronRun(30)
+        onePerceptronRun(100)
     }
     
     func linearRegressionDemo()
@@ -87,6 +88,28 @@ class ViewController: NSViewController {
         let line = LinearRegressionResult(slope: slope, intercept: intercept, lowestX: -1.0, highestX: 1.0)
         let trainingPoints = (0..<numberOfTrainingPoints).map{_ in return DataPoint(x:Float.random(-1.0, upper: 1.0),y:Float.random(-1.0, upper: 1.0))}
         
+        let json = JSON(trainingPoints.map{["x":$0.x,"y":$0.y]})
+        let str = json.description
+        let path = "\(NSBundle.mainBundle().bundlePath)/Contents/Resources/JSChart/resource.json"
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+        {
+            if NSFileManager.defaultManager().fileExistsAtPath(path)
+            {
+                do
+                {
+                    try NSFileManager.defaultManager().removeItemAtPath(path)
+                }
+                catch
+                {
+                    print("bahut bura hua")
+                }
+                
+                NSFileManager.defaultManager().createFileAtPath(path, contents: str.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
+            }
+            dispatch_async(dispatch_get_main_queue(), { 
+                print("ho gaya")
+            })
+        })
         for point in trainingPoints
         {
             print("[\(point.x),\(point.y)],")
