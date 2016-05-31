@@ -90,26 +90,9 @@ class ViewController: NSViewController {
         
         let json = JSON(trainingPoints.map{["x":$0.x,"y":$0.y]})
         let str = json.description
-        let path = "\(NSBundle.mainBundle().bundlePath)/Contents/Resources/JSChart/resource.json"
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
-        {
-            if NSFileManager.defaultManager().fileExistsAtPath(path)
-            {
-                do
-                {
-                    try NSFileManager.defaultManager().removeItemAtPath(path)
-                }
-                catch
-                {
-                    print("bahut bura hua")
-                }
-                
-                NSFileManager.defaultManager().createFileAtPath(path, contents: str.dataUsingEncoding(NSUTF8StringEncoding), attributes: nil)
-            }
-            dispatch_async(dispatch_get_main_queue(), { 
-                print("ho gaya")
-            })
-        })
+        let path = "\(NSBundle.mainBundle().bundlePath)/Contents/Resources/JSChart/points.json"
+        
+        
         for point in trainingPoints
         {
             print("[\(point.x),\(point.y)],")
