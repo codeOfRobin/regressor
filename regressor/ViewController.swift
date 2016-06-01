@@ -111,12 +111,6 @@ class ViewController: NSViewController {
                 print("ho gaya")
             })
         })
-        for point in trainingPoints
-        {
-            print("[\(point.x),\(point.y)],")
-        }
-        print(line.plotPoints.first)
-        print(line.plotPoints.last)
         var pluses : [DataPoint] = []
         var minuses : [DataPoint] = []
 
@@ -183,23 +177,13 @@ class ViewController: NSViewController {
                 break
             }
         }
-
-        print(counter)
-
-//        let origResults = trainingPoints.map{return ($0.y*w[0] + $0.x*w[1] + 1*w[2]).sign()}
-//        let newResults = trainingPoints.map{return ($0.y*w2[0] + $0.x*w2[1] + 1*w2[2]).sign()}
-//        print(origResults)
-//        print(newResults)
         let (slope2,intercept2) = getSlopeAndIntercept(w2)
         let line2 = LinearRegressionResult(slope: slope2, intercept: intercept2, lowestX: -1.0, highestX: 1.0)
-        print(line2.plotPoints.first)
-        print(line2.plotPoints.last)
         let pointSet2 = PointSet(points: line2.plotPoints.map{Point(x: Double($0.x),y: Double($0.y))})
         pointSet2.pointType = .None
         pointSet2.lineColor = NSColor.orangeColor()
         plotView.addPointSet(pointSet2)
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-        print("Time elapsed for PLA: \(timeElapsed) s")
     }
 
     // MARK: Regression shouldn't be a property of the set, should be a separate thing.
